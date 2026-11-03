@@ -23,5 +23,22 @@
 
     <button id="calcular">Calcular</button>
     <p id="resultado"> </p>
+
+    <script>
+     document.getElementById("calcular").addEventListener("click",function() {
+        const custo = Number(document.getElementById("custo").value);
+        const frete = Number(document.getElementById("frete").value);
+        const taxa = Number(document.getElementById("taxa").value);
+        const lucro = Number(document.getElementById("lucro").value);
+
+        const gastototal = custo + frete + taxa ;
+        const preco = gastototal * (1 + lucro / 100);
+        const lucroRS = preco - gastototal;
+
+        document.getElementById("resultado").textContent = "Preço ideal: R$ " + preco.toFixed(2) + " | Lucro: R$ " + lucroRS.toFixed(2);
+     });
+
+    </script>
+
 </body>
 </html>
