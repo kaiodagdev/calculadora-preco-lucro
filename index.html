@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Preço e Lucro</title>
@@ -26,10 +27,30 @@
 
     <script>
      document.getElementById("calcular").addEventListener("click",function() {
-        const custo = Number(document.getElementById("custo").value);
-        const frete = Number(document.getElementById("frete").value);
-        const taxa = Number(document.getElementById("taxa").value);
-        const lucro = Number(document.getElementById("lucro").value);
+        const campoCusto = document.getElementById("custo").value;
+        const campoFrete = document.getElementById("frete").value;
+        const campoTaxa =  document.getElementById("taxa").value;
+        const campoLucro = document.getElementById("lucro").value;
+
+        if (campoCusto === "" || campoFrete === "" || campoTaxa === "" || campoLucro === "") {
+            resultado.textContent = "Preencha todos os campos.";
+            return;
+        }
+
+        const custo = Number(campoCusto);
+        const frete = Number(campoFrete);
+        const taxa = Number(campoTaxa);
+        const lucro = Number(campoLucro);
+
+        if (custo < 0 || frete < 0 || taxa < 0 || lucro < 0) {
+            resultado.textContent = "Use apenas numeros positivos.";
+            return;
+        }
+
+        if (custo === 0) {
+            resultado.textContent = "Custo do produto deve ser maior que 0.";
+            return;
+        }
 
         const gastototal = custo + frete + taxa ;
         const preco = gastototal * (1 + lucro / 100);
